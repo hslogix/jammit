@@ -173,11 +173,11 @@ module Jammit
                       value == 'always'           ? true : false
   end
 
-  def dev_env?
+  def self.dev_env?
     !defined?(Rails) || (Rails.env.respond_to?(:development?)) ? Rails.env.development? : Rails.env == "development"
   end
 
-  def test_env?
+  def self.test_env?
     !defined?(Rails) || (Rails.env.respond_to?(:test?)) ? Rails.env.test? : Rails.env == "test"
   end
 
