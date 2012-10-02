@@ -168,9 +168,17 @@ module Jammit
 
   # Turn asset packaging on or off, depending on configuration and environment.
   def self.set_package_assets(value)
-    package_env     = !defined?(Rails) || (!Rails.env.development? && !Rails.env.test?)
+    package_env     =  !dev_env? && !test_env?
     @package_assets = value == true || value.nil? ? package_env :
                       value == 'always'           ? true : false
+  end
+
+  def dev_env?
+    !defined?(Rails) || (Rails.env.respond_to?(:development?)) ? Rails.env.development? : Rails.env == "development"
+  end
+
+  def test_env?
+    !defined?(Rails) || (Rails.env.respond_to?(:test?)) ? Rails.env.test? : Rails.env == "test"
   end
 
   # Assign the JST template function, unless explicitly turned off.
