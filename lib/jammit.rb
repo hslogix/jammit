@@ -174,11 +174,11 @@ module Jammit
   end
 
   def self.dev_env?
-    !defined?(Rails) || (Rails.env.respond_to?(:development?)) ? Rails.env.development? : Rails.env == "development"
+    !defined?(Rails) || (Rails.env.respond_to?(:development?) ? Rails.env.development? : Rails.env == "development")
   end
 
   def self.test_env?
-    !defined?(Rails) || (Rails.env.respond_to?(:test?)) ? Rails.env.test? : Rails.env == "test"
+    !defined?(Rails) || (Rails.env.respond_to?(:test?) ? Rails.env.test? : Rails.env == "test")
   end
 
   # Assign the JST template function, unless explicitly turned off.
